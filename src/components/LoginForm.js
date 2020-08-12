@@ -19,10 +19,10 @@ const LoginForm = ({ setHc, setPrescriptions }) => {
         let userInfo = {username, password}
         fetchLogin(userInfo)
             .then(response => {
-                let {id, name} = response.cbo
+                let {id, name} = response.hc
                 let {token} = response
                 setHc({id, name, token})
-                setPrescriptions(response.cbo)
+                setPrescriptions(response.hc)
                 history.push('/')
             })
     }

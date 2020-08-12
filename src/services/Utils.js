@@ -7,3 +7,10 @@ export const fetchLogin = (userInfo) => {
         body: JSON.stringify(userInfo)})
         .then(r => r.json())
 }
+
+export const fetchPersistLogin = (token) => {
+    return fetch(BACKEND_HCS+'/persist_login', {
+        headers: {'Authorization': `Bearer ${token}`}
+    })
+        .then(r => r.json())
+}
