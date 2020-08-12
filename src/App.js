@@ -3,7 +3,7 @@ import './App.css';
 import { withRouter, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import SiteHeader from './components/SiteHeader';
-import { PrescriptionsList } from './features/prescriptions/PrescriptionsList';
+import PrescriptionsList from './features/prescriptions/PrescriptionsList';
 import { fetchPersistLogin } from './services/Utils';
 import LoginForm from './components/LoginForm';
 import { setHc } from './features/hc/HcSlice';
@@ -27,7 +27,7 @@ class App extends Component {
       let {id, name} = response.hc
       let {token} = response
       this.props.dispatch(setHc({id, name, token}))
-      this.props.dispatch(setPrescriptions(response.cbo))
+      this.props.dispatch(setPrescriptions(response.hc))
     } else {
         localStorage.clear()
       }
