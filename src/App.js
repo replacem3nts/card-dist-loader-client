@@ -3,10 +3,12 @@ import './App.css';
 import { withRouter, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { SiteHeader } from './components/SiteHeader';
-import PrescriptionsList from './features/prescriptions/PrescriptionsList';
 import { fetchPersistLogin } from './services/Utils';
 import LoginForm from './components/LoginForm';
 import { setHcs } from './features/hcs/HcsSlice';
+import Home from './components/Home';
+import Navigation from './components/Navigation';
+import Hc from './features/hcs/Hc';
 
 class App extends Component {
 
@@ -33,9 +35,19 @@ class App extends Component {
 
   renderHome = () => {
     if(localStorage.token) {
-      return <PrescriptionsList/>
-    } else {
+      return <Home/>
+      } else {
       return <LoginForm/>
+    }
+  }
+
+  renderHc = (routerProps) => {
+    let {slug} = routerProps.match.params
+    let foundHc = this.props.hcs.find(hc => hc.id === parseInt(slug, 10))
+    if(foundHc && localStorage.token) {
+      return <Hc hc={foundHc}/>
+      } else {
+        this.props.history.push('/')
     }
   }
 
@@ -47,8 +59,10 @@ class App extends Component {
           <hr/>
         </header>
         <main className="App-main">
+          {localStorage.token ? <Navigation/> : null}
           <Switch>
             <Route path='/' exact render={this.renderHome}/>
+            <Route path='/:slug' exact render={this.renderHc}/>
           </Switch>
         </main>
       </div>

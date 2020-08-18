@@ -1,13 +1,7 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
-import { Prescription } from './Prescription'
-import { Link } from 'react-router-dom'
+import { Prescription } from './PickedUpPrescription'
 
-let mapState = (state) => {
-    return {prescriptions: state.prescriptions}
-}
-
-const PrescriptionsList = ({ prescriptions }) => {
+export const PrescriptionsList = ({ prescriptions }) => {
     const [editRx, setEditRx] = useState(false)
     const [rxToEdit, setRxToEdit] = useState({})
 
@@ -89,5 +83,3 @@ const PrescriptionsList = ({ prescriptions }) => {
         </>
     )
 }
-
-export default connect(mapState)(PrescriptionsList)
