@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux'
-import prescriptionsReducer from '../features/prescriptions/PrescriptionsSlice'
-import hcReducer from '../features/hc/HcSlice'
+import hcsReducer from '../features/hcs/HcsSlice'
 
 export default combineReducers({
-    hc: hcReducer,
-    prescriptions: prescriptionsReducer
+    hcs: hcsReducer
 })

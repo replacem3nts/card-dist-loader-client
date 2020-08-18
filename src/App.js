@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 import { withRouter, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import SiteHeader from './components/SiteHeader';
+import { SiteHeader } from './components/SiteHeader';
 import PrescriptionsList from './features/prescriptions/PrescriptionsList';
 import { fetchPersistLogin } from './services/Utils';
 import LoginForm from './components/LoginForm';
-import { setHc } from './features/hc/HcSlice';
-import { setPrescriptions } from './features/prescriptions/PrescriptionsSlice';
+import { setHcs } from './features/hcs/HcsSlice';
 
 class App extends Component {
 
@@ -24,10 +23,9 @@ class App extends Component {
   handleResponse = (response) => {
     console.log(response)
     if(!response.message) {
-      let {id, name} = response.hc
-      let {token} = response
-      this.props.dispatch(setHc({id, name, token}))
-      this.props.dispatch(setPrescriptions(response.hc))
+      let { token } = response
+      let { hcs } = response.cardloader
+      this.props.dispatch(setHcs({hcs, token}))
     } else {
         localStorage.clear()
       }

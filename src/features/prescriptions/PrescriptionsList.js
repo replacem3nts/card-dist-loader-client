@@ -78,7 +78,7 @@ const PrescriptionsList = ({ prescriptions }) => {
                         <form>
                             <label>
                                 Card Serial Number:
-                                <input type='text' value={rxToEdit.cardserial} onChange={(e) => setRxToEdit(rxToEdit => {...rxToEdit, cardserial: e.target.value})}/>
+                                {/* <input type='text' value={rxToEdit.cardserial} onChange={(e) => setRxToEdit(rxToEdit => {...rxToEdit, cardserial: e.target.value})}/> */}
                             </label>
                         </form>
                     </div>
